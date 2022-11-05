@@ -6,8 +6,8 @@ class Artiste(models.Model):
     last_name = models.CharField(max_length=40)
     age = models.IntegerField()
 
-    #def __str__(self) -> str:
-    #    return self.first_name
+    def __str__(self) -> str:
+        return self.first_name
 
 class Song(models.Model):
     title = models.CharField(max_length=400)
@@ -15,7 +15,7 @@ class Song(models.Model):
     likes = models.IntegerField()
     artiste_id = models.ForeignKey(Artiste, on_delete=models.CASCADE)
 
-    def __title__(self) -> title:
+    def __str__(self) -> str:
         return self.title
 
 class Lyric(models.Model):
