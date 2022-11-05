@@ -39,24 +39,24 @@ class TryViews(viewsets.ModelViewSet):
     serializer_class = SongSerializer
     queryset = Song.objects.all()
 
-    @action(detail=True, methods=['put', 'delete'])
-    def update_song_title(self, request, pk=None):
+    @action(detail=True, methods=['put'])
+    def update_title(self, request, pk=None):
         song = self.get_object()
         serial = SongSerializer(data=request.data)
         if serial.is_valid():
-            song.update_song_title(serial.validated_data['title'])
+            song.update_title(serial.validated_data['title'])
             song.save()
             return Response({'status': 'title updated'})
         else:
             return Response(serial.errors, status=status.HTTP_400_BAD_REQUEST)
 
     @action(detail=True, methods=['put'])
-    def update_song_release(self, request, pk=None):
+    def update_releasedate(self, request, pk=None):
         song = self.get_object()
         serial = SongSerializer(data=request.data)
         if serial.is_valid():
-            song.title(serial.validated_data['title'])
-            song.date_released(serial.validated_data['date_released'])
+            #song.title(serial.validated_data['title'])
+            song.update_releasedate(serial.validated_data['date_released'])
             song.save()
             return Response({'status': 'song details updated'})
         else:
